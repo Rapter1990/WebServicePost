@@ -1,7 +1,7 @@
 package com.example.webservicepost.restapi;
 
 
-import com.example.webservicepost.model.User;
+import com.example.webservicepost.model.Result;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -12,6 +12,6 @@ public interface RestApi {
 
     @FormUrlEncoded
     @POST("/insert.php")
-    Call<User> addUser(@Field("ad") String ad ,@Field("soyad") String soyad);
+    Call<Result> addUser(@Field("ad") String ad ,@Field("soyad") String soyad);
 
 }

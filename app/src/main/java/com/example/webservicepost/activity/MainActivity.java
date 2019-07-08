@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.webservicepost.R;
-import com.example.webservicepost.model.User;
+import com.example.webservicepost.model.Result;
 import com.example.webservicepost.retrofit.Manager;
 
 import butterknife.BindView;
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.btn)
     Button btn;
 
-    User user;
+    Result result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,21 +61,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void addValueToDatabase(String isim, String soyisim) {
+    private void addValueToDatabase(final String isim,final String soyisim) {
         Log.i(LOG,"addValueToDatabase method is working");
-        Call<User> x = Manager.getInstance().addUser(isim,soyisim);
-        x.enqueue(new Callback<User>() {
+        Call<Result> x = Manager.getInstance().addUser(isim,soyisim);
+        x.enqueue(new Callback<Result>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<Result> call, Response<Result> response) {
                 if(response.isSuccessful()){
-                    user = response.body();
-                    Log.i(LOG,"addValueToDatabase | user :  " + user.getName() + " " + user.getSurname());
-                    Toast.makeText(getApplicationContext(), user.getName() + " " + user.getSurname(), Toast.LENGTH_LONG).show();
+                    result = response.body();
+                    Toast.makeText(getApplicationContext(), result.getResult(), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<Result> call, Throwable t) {
 
             }
         });

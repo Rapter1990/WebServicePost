@@ -1,5 +1,5 @@
 package com.example.webservicepost.retrofit;
 
 public class BaseUrl {
-    public static final String BASE_URL ="https://androidapp90.000webhostapp.com";
+    public static final String BASE_URL ="http://android90.tk/";
 }
