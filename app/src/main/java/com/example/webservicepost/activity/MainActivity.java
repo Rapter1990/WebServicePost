@@ -61,21 +61,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void addValueToDatabase(final String isim,final String soyisim) {
+    private void addValueToDatabase(final String name,final String surname) {
         Log.i(LOG,"addValueToDatabase method is working");
-        Call<Result> x = Manager.getInstance().addUser(isim,soyisim);
+        result = new Result();
+        Call<Result> x = Manager.getInstance().addUser(name,surname);
         x.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
+                Log.i(LOG,"onResponse method is working");
                 if(response.isSuccessful()){
+                    Log.i(LOG,"response.isSuccessful() method is working");
                     result = response.body();
-                    Toast.makeText(getApplicationContext(), result.getResult(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), result.getResult(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Result> call, Throwable t) {
-
+                Log.i(LOG,t.toString());
             }
         });
     }

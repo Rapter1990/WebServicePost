@@ -22,6 +22,7 @@ public class RestApiClient {
 
         OkHttpClient okHttpClient = builder.build();
 
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(restApiServiceUrl)
                 .client(okHttpClient)
